@@ -1,10 +1,8 @@
-<!-- <span [ngStyle]="{'color': 'white'}">{{counter}}</span>
-<button type="button" (click)="onClick()">Aleatorio</button> -->
 
 <div className="container">
     <!-- //validación para los números negativos, si lleha a -10 que muestre 0 -->
     <div id="circulo">{{counter >= 0 ? counter : '0'}}</div>
-    <button  type="button" (click)="onClick()" id="button-click">
+    <button [disabled]="isInvalid()" type="button" (click)="handleClick()" id="button-click">
       Click me!
     </button>
 </div>

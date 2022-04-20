@@ -11,7 +11,7 @@ import { MethodsService } from './methods.service';
 export class AppComponent implements OnInit {
   constructor(private methodsService: MethodsService) { }
   title = 'april-fools-angular';
-  colores: Colors = {
+  myColors: Colors = {
     purple: 0,
     blue: 0,
     green: 0,
@@ -26,9 +26,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const localStorageObj = this.methodsService.readLocalStorage('colors');
     if(!localStorageObj) {
-      this.methodsService.writeLocalStorage('colors',  this.colores);
+      this.methodsService.writeLocalStorage('colors',  this.myColors);
     }else{
-      //setColors(localStorageObj) 
+      const localStorageObj = <Colors>JSON.parse(this.methodsService.readLocalStorage('colors') || "") 
+      this.myColors = localStorageObj;
     }
   }
 }
