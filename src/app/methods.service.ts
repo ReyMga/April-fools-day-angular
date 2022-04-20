@@ -14,8 +14,7 @@ export class MethodsService {
 
   //Local storage
   readLocalStorage = (item:string = "")  => {
-    const colors = <unknown>localStorage.getItem(item);
-    return colors;
+    return localStorage.getItem(item);
   };
   //escribir localStorage
   writeLocalStorage = (item:string, object:object) => {

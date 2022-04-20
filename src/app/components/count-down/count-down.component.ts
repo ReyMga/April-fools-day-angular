@@ -13,8 +13,7 @@ export class CountDownComponent implements OnInit {
   constructor(private methodsService: MethodsService) { }
   randomNumber: number = 0;
   counter: number = 60;
-  seconds: number = 60;
-  colores: Colors = {
+  myColors: Colors = {
     purple: 0,
     blue: 0,
     green: 0,
@@ -27,43 +26,28 @@ export class CountDownComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    //Cargo mi variable local con lo que hay en el localStorage
+    const localStorageObj = this.methodsService.readLocalStorage('colors');
+    if(localStorageObj) {
+      const localStorageObj = <Colors>JSON.parse(this.methodsService.readLocalStorage('colors') || "") 
+      this.myColors = localStorageObj;
+    }
+    //Genero el número aleatorio
     this.randomNumber = this.methodsService.createRandomNumber(0,60);
     this.startTimer();
   }
-
-  onClick(): void {
-    this.randomNumber = this.methodsService.createRandomNumber(0,60);
-  }
-
-  colors = {
-    purple: 0,
-    blue: 0,
-    green: 0,
-    yellow: 0,
-    orange: 0,
-    red: 0,
-    grey: 0,
-    white: 0,
-    myColor: null
-  };
 
   simulateOtherUsersClick = () => {
     //Obtengo el color
     let color:string = this.methodsService.colorPreset(this.randomNumber);
     
+    //Leo del localStorage y transformo al tipo Colors
+    const localStorageObj = <Colors>JSON.parse(this.methodsService.readLocalStorage('colors') || "") 
+    this.myColors = localStorageObj;
+    this.myColors[color as keyof Colors]++;
+
     //Guardo en localStorage
-    const localStorageObj = this.methodsService.readLocalStorage('colors');
-    /*
-    let personFromStorage = JSON.parse(localStorage.getItem('colors')) as Colors;
-
-    const dale= JSON.parse(localStorageObj)
-
-    this.colores = <Colors>localStorageObj;
-    this.colores = JSON.parse(Colors, this.colores)
-    */
-    this.colores[color as keyof Colors]++;
-
-    this.methodsService.writeLocalStorage('colors',  this.colores);
+    this.methodsService.writeLocalStorage('colors',  this.myColors);
     
     //Reseteo el contador
     this.counter = 60
@@ -72,56 +56,33 @@ export class CountDownComponent implements OnInit {
     this.randomNumber = this.methodsService.createRandomNumber(0,60);
   }
 
+  handleClick = () => {
+    //Obtengo el color
+    let color:string = this.methodsService.colorPreset(this.counter);
+
+    //Guardo en localStorage
+    const localStorageObj = <Colors>JSON.parse(this.methodsService.readLocalStorage('colors') || "") 
+    this.myColors = localStorageObj;
+    this.myColors[color as keyof Colors]++;
+
+    //Colocamos en 1 el color white, que significa que ya no estamos habilitados a hacer click
+    this.myColors.white = 1;
+    this.myColors.myColor = color;
+    this.methodsService.writeLocalStorage('colors',  this.myColors);
+
+    //Reseteo el contador
+    this.counter = 60
+  };
+  
   //Timer
   startTimer = () =>{
     timer(0, 1000).subscribe(n => {
       this.counter--;
-      console.log(this.randomNumber)
-      console.log(this.counter)
       if(this.counter === this.randomNumber) {
         this.simulateOtherUsersClick();
       }
     });
   };
 
-  // handleClick = () => {
-  //   //Obtengo el color
-  //   let color = colorPreset(counter);
-
-  //   //Guardo en localStorage
-  //   const colorsObj = readLocalStorage('colors');
-  //   colorsObj[color] += 1;
-  //   //Colocamos en 1 el color white, que significa que ya no estamos habilitados a hacer click
-  //   colorsObj.white = 1;
-  //   colorsObj.myColor = color;
-  //   writeLocalStorage('colors',  colorsObj);
-
-  //   //Actualizo mi variable de estado local
-  //   setColors(colorsObj);
-
-  //   //Reseteo el contador
-  //   setCounter(seconds); //Reseteo el contador
-
-  //   props.onUpdate();
-  // };
-
-  // const simulateOtherUsersClick = () => {
-  //   //Obtengo el color
-  //   let color = colorPreset(randomNumber);
-    
-  //   //Guardo en localStorage
-  //   const colorsObj = readLocalStorage('colors');
-  //   colorsObj[color] += 1;
-  //   writeLocalStorage('colors',  colorsObj);
-
-  //   //Actualizo mi variable de estado local
-  //   setColors(colorsObj);
-
-  //   //Reseteo el contador
-  //   setCounter(seconds); //Reseteo el contador
-  //   setRandomNumber(createRandomNumber(0, seconds)); //Seteo un nuevo numero aleatorio para simular otro click
-
-  //   props.onUpdate();
-  // }
-
+  isInvalid = () => this.myColors.myColor !== "";
 }
