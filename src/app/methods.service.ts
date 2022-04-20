@@ -14,7 +14,8 @@ export class MethodsService {
 
   //Local storage
   readLocalStorage = (item:string = "")  => {
-    return localStorage.getItem(item);
+    const colors = <unknown>localStorage.getItem(item);
+    return colors;
   };
   //escribir localStorage
   writeLocalStorage = (item:string, object:object) => {
@@ -49,8 +50,8 @@ export class MethodsService {
     }
     return result;
   };
-  
-   formatData = (colors:string) => {
+
+   formatData = (colors:object) => {
     //Formateo las propiedades del array en un nuevo array que sea compatible con el Chart.js
     const formatedData = Object.entries(colors).map(
       x => x[0] !== "myColor" && { name: x[0], value: x[1] }
@@ -60,6 +61,5 @@ export class MethodsService {
   
     return formatedData;
   };
-
 
 }

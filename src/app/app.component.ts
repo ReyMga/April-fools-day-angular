@@ -1,22 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { Colors } from './colors'
 import { MethodsService } from './methods.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-})
-export class AppComponent implements OnInit{
-  constructor(private methodsService: MethodsService) { }
 
+})
+export class AppComponent implements OnInit {
+  constructor(private methodsService: MethodsService) { }
   title = 'april-fools-angular';
-  tiempoAleatorio: number = 0;
+  colores: Colors = {
+    purple: 0,
+    blue: 0,
+    green: 0,
+    yellow: 0,
+    orange: 0,
+    red: 0,
+    grey: 0,
+    white: 0,
+    myColor: '',
+  };
 
   ngOnInit(): void {
-    this.tiempoAleatorio = this.methodsService.createRandomNumber(1,100);
-  }
-
-  onClick(): void {
-    this.tiempoAleatorio = this.methodsService.createRandomNumber(1,100);
+    const localStorageObj = this.methodsService.readLocalStorage('colors');
+    if(!localStorageObj) {
+      this.methodsService.writeLocalStorage('colors',  this.colores);
+    }else{
+      //setColors(localStorageObj) 
+    }
   }
 }
