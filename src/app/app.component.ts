@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Colors } from './colors'
 import { MethodsService } from './methods.service';
+import {GraficoModel} from "./Model/grafico.model";
+
 
 @Component({
   selector: 'app-root',
@@ -22,14 +24,25 @@ export class AppComponent implements OnInit {
     white: 0,
     myColor: '',
   };
+  
+  colors: Array<GraficoModel> = [];
 
   ngOnInit(): void {
     const localStorageObj = this.methodsService.readLocalStorage('colors');
     if(!localStorageObj) {
       this.methodsService.writeLocalStorage('colors',  this.myColors);
     }else{
-      const localStorageObj = <Colors>JSON.parse(this.methodsService.readLocalStorage('colors') || "") 
-      this.myColors = localStorageObj;
+      this.renderChart();
     }
+  }
+
+  refreshChart():void {
+    this.renderChart();
+  }
+
+  renderChart():void{
+    const localStorageObj = <Colors>JSON.parse(this.methodsService.readLocalStorage('colors') || "") 
+    this.myColors = localStorageObj;
+    this.colors = <GraficoModel[]> this.methodsService.formatData(this.myColors)
   }
 }

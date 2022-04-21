@@ -1,0 +1,65 @@
+.grafico .content {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 160px;
+    margin-left: 359px;
+}
+
+.grafico .content span {
+  font-family: "Roboto";
+  font-size: 13px;
+  color: #707070;
+}
+
+.container {
+  display: flex;
+  margin: auto;
+  padding-top: 10%;
+  flex-direction: column;
+}
+
+.title {
+  font-family: "Spartan", sans-serif;
+  font-size: 24px;
+  color: rgb(243, 255, 72);
+  text-shadow: 1px 2px black;
+  display: flex;
+  margin: auto;
+}
+
+.grafico .legends {
+  display: flex;
+  flex-direction: row;
+  color: #707070;
+  font-family: "Roboto";
+  font-size: 12px;
+  text-align: center;
+  margin-left: 357px;
+}
+
+.grafico .legends span {
+  width: 60px;
+  margin: 0 15px;
+}
+
+.grafico .bars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.grafico .bar {
+  width: 60px;
+  min-height: 2px;
+  margin: 0 15px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.grafico .bar:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.2);
+}

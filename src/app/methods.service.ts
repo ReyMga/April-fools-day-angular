@@ -53,8 +53,10 @@ export class MethodsService {
    formatData = (colors:object) => {
     //Formateo las propiedades del array en un nuevo array que sea compatible con el Chart.js
     const formatedData = Object.entries(colors).map(
-      x => x[0] !== "myColor" && { name: x[0], value: x[1] }
+      x => x[0] !== "myColor" && {Value: x[1], Color:x[0], Size:'', Legend:x[0]}
     );
+
+    //{Value: x[1], Color:x[0], Size:'', Legend:x[0]},
     //Remuevo el ultimo item del array que es myColor y al grafico no le sirve
     formatedData.pop();
   
