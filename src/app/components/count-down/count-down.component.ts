@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { timer } from 'rxjs';
 import { MethodsService } from '../../methods.service';
 import { Colors } from '../../colors'
@@ -10,6 +10,7 @@ import { Colors } from '../../colors'
 })
 
 export class CountDownComponent implements OnInit {
+  @Output() refreshParentChart = new EventEmitter();
   constructor(private methodsService: MethodsService) { }
   randomNumber: number = 0;
   counter: number = 60;
@@ -24,6 +25,10 @@ export class CountDownComponent implements OnInit {
     white: 0,
     myColor: '',
   };
+
+  callParent(): void {
+    this.refreshParentChart.emit();
+  }
 
   ngOnInit(): void {
     //Cargo mi variable local con lo que hay en el localStorage
@@ -54,6 +59,7 @@ export class CountDownComponent implements OnInit {
     
     //Seteo un nuevo numero aleatorio para simular otro click
     this.randomNumber = this.methodsService.createRandomNumber(0,60);
+    this.callParent();
   }
 
   handleClick = () => {
@@ -72,6 +78,7 @@ export class CountDownComponent implements OnInit {
 
     //Reseteo el contador
     this.counter = 60
+    this.callParent();
   };
   
   //Timer

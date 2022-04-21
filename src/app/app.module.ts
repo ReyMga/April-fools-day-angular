@@ -3,22 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChartComponent } from './components/chart/chart.component';
+import { GraficoBarrasComponent } from './components/grafico-barras/grafico-barras.component';
 import { CountDownComponent } from './components/count-down/count-down.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent,
+    GraficoBarrasComponent,
     CountDownComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgChartsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

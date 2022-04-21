@@ -1,0 +1,15 @@
+<div class="container">
+    <span class="title">Statistics Views</span>
+    <div class="grafico">
+        <div class="content">
+            <div class="bars" *ngFor="let item of List">
+                <span>{{item.Value}}</span>
+                <div class="bar" [style.background-color]="item.Color" [style.height]='item.Size'></div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="legends">
+            <span *ngFor="let item of List">{{item.Legend}}</span>
+        </div>
+    </div>
+</div>
