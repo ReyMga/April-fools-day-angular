@@ -6,7 +6,7 @@ import { Colors } from '../../colors'
 @Component({
   selector: 'count-down-component',
   templateUrl: './count-down.component.html',
-  styleUrls: ['./count-down.component.css']
+  styleUrls: ['./count-down.component.scss']
 })
 
 export class CountDownComponent implements OnInit {
@@ -42,7 +42,7 @@ export class CountDownComponent implements OnInit {
     this.startTimer();
   }
 
-  simulateOtherUsersClick = () => {
+  simulateOtherUsersClick(){
     //Obtengo el color
     let color:string = this.methodsService.colorPreset(this.randomNumber);
     
@@ -62,7 +62,7 @@ export class CountDownComponent implements OnInit {
     this.callParent();
   }
 
-  handleClick = () => {
+  handleClick(){
     //Obtengo el color
     let color:string = this.methodsService.colorPreset(this.counter);
 
@@ -82,7 +82,7 @@ export class CountDownComponent implements OnInit {
   };
   
   //Timer
-  startTimer = () =>{
+  startTimer(){
     timer(0, 1000).subscribe(n => {
       this.counter--;
       if(this.counter === this.randomNumber) {
