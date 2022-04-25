@@ -8,21 +8,21 @@ export class MethodsService {
   constructor() { }
 
   //número aleatorio
-  createRandomNumber = (min:number, max:number) => {
+  createRandomNumber(min:number, max:number){
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
   //Local storage
-  readLocalStorage = (item:string = "")  => {
+  readLocalStorage(item:string = ""){
     return localStorage.getItem(item);
   };
   //escribir localStorage
-  writeLocalStorage = (item:string, object:object) => {
+  writeLocalStorage(item:string, object:object){
     localStorage.setItem(item, JSON.stringify(object));
   };
 
   //colors
-  colorPreset = (seconds:number) => {
+  colorPreset(seconds:number){
     let result;
     switch (true) {
       case (seconds > 51):
@@ -50,7 +50,7 @@ export class MethodsService {
     return result;
   };
 
-   formatData = (colors:object) => {
+   formatData(colors:object){
     //Formateo las propiedades del array en un nuevo array que sea compatible con el Chart.js
     const formatedData = Object.entries(colors).map(
       x => x[0] !== "myColor" && {Value: x[1], Color:x[0], Size:'', Legend:x[0]}
