@@ -7,13 +7,15 @@ import { GraficoBarrasComponent } from './components/grafico-barras/grafico-barr
 import { CountDownComponent } from './components/count-down/count-down.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgChartsModule } from 'ng2-charts';
+import { PrincipalPageComponent } from './pages/principal-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     GraficoBarrasComponent,
-    CountDownComponent
+    CountDownComponent,
+    PrincipalPageComponent
   ],
   imports: [
     BrowserModule,
