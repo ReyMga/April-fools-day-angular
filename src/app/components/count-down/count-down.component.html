@@ -1,0 +1,8 @@
+
+<div className="container">
+    <!-- //validación para los números negativos, si lleha a -10 que muestre 0 -->
+    <div id="circulo">{{counter >= 0 ? counter : '0'}}</div>
+    <button [disabled]="isInvalid()" type="button" (click)="handleClick()" id="button-click">
+      Click me!
+    </button>
+</div>
