@@ -9,8 +9,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { PrincipalPageComponent } from './pages/principal-page.component';
 import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LoginComponent} from './user/login/login.component'
-
+import { LoginComponent} from './pages/login/login.component'
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { LoginComponent} from './user/login/login.component'
     ToastrModule.forRoot({ positionClass: 'inline' }),
     ToastContainerModule,    
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

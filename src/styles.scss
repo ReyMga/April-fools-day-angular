@@ -1,17 +1,21 @@
-$color_4: white;
+$color_4: #FFF;
 $color_5: #61dafb;
-$font-family_4: Roboto, "Helvetica Neue", sans-serif;
+$font-family_4: Roboto,
+"Helvetica Neue",
+sans-serif;
 $background-color_1: #282c34;
 
 /* You can add global styles to this file, and also import other style files */
 @keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
+
 html {
 	height: 100%;
 }
@@ -19,6 +23,7 @@ body {
 	height: 100%;
 	margin: 0;
 	font-family: $font-family_4;
+	background-image: url("https://www.teahub.io/photos/full/313-3132029_linkedin-wallpaper-wallpapersafari-background-image-for-form-in.jpg");
 }
 .App {
 	text-align: center;
@@ -45,8 +50,25 @@ body {
 .App-link {
 	color: $color_5;
 }
+
+
 @media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.example-spacer {
+    flex: 1 1 auto
+}
+
+.center {
+    text-align: center;
+}
+
+.toast-container {
+    top: 10px;
+    right: 5px;
+    text-align: center;
+    background-position: 35% !important;
 }

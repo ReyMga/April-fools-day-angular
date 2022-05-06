@@ -1,4 +1,3 @@
-$color_1: #707070;
 $color_2: rgb(243, 255, 72);
 $font-family_1: "Roboto";
 $font-family_2: "Spartan", sans-serif;
@@ -9,21 +8,21 @@ $font-family_2: "Spartan", sans-serif;
 		flex-direction: row;
 		width: 50%;
 		height: 160px;
-		margin-left: 359px;
+		margin-left: 234px;
 		span {
 			font-family: $font-family_1;
 			font-size: 13px;
-			color: $color_1;
+			color: darkgrey;
 		}
 	}
 	.legends {
 		display: flex;
 		flex-direction: row;
-		color: $color_1;
+		color: darkgrey;
 		font-family: $font-family_1;
 		font-size: 12px;
 		text-align: center;
-		margin-left: 357px;
+		margin-left: 232px;
 		span {
 			width: 60px;
 			margin: 0 15px;

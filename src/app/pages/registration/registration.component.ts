@@ -1,6 +1,7 @@
-import { UserService } from './../../shared/user.service';
+import { UserService } from '../../shared/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormControl, FormControlName } from "@angular/forms";
 
 @Component({
   selector: 'app-registration',
@@ -11,10 +12,16 @@ export class RegistrationComponent implements OnInit {
 
   constructor(public service: UserService, private toastr: ToastrService) { }
 
+  registerForm = new FormGroup({
+    name: new FormControl(''),
+    password: new FormControl(''),
+  })
+
   ngOnInit() {
-    this.service.formModel.reset();
+    this.registerForm.reset();
   }
 
+  /*
   onSubmit() {
     this.service.register().subscribe(
       (res: any) => {
@@ -40,5 +47,5 @@ export class RegistrationComponent implements OnInit {
       }
     );
   }
-
+*/
 }
