@@ -1,0 +1,18 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Hero Form</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" formControlName="name" required>
+          <label for="name">Password</label>
+          <input type="password" class="form-control" id="password" name="password" formControlName="password" required>
+        </div>
+  
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+  
+</div>
+  
+  
