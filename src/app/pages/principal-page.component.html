@@ -1,2 +1,9 @@
+<p class="container-login">
+    <mat-toolbar class="mat-container">
+    <span>WELCOME</span>
+    <span class="example-spacer"></span>
+    <button type="button" (click)="logout()" id="button-exit">Logout</button>
+  </mat-toolbar>
+</p>
 <count-down-component (refreshParentChart)="refreshChart()"></count-down-component>
 <app-grafico-barras [List]='colors' [style.visibility]="myColors.white === 0 ? 'hidden': 'visible'"></app-grafico-barras>

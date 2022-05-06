@@ -28,6 +28,10 @@ export class PrincipalPageComponent implements OnInit {
     }
   }
 
+  logout():void {
+    this.authService.logout();
+  }
+
   refreshChart():void {
     this.renderChart();
   }

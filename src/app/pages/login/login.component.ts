@@ -1,9 +1,8 @@
-import { Hero } from "../hero";
 import { FormGroup, FormControl, FormControlName } from "@angular/forms";
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from './../../shared/user.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: "app-login",
@@ -28,11 +27,16 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     //console.log(this.loginForm)
-    this.submitted = true;
+
 
     if(this.service.login(this.loginForm.value)){
         localStorage.setItem('token', '123');
+        this.submitted = true;
         this.router.navigateByUrl('/home');
+    }else{
+      this.router.navigateByUrl('/login');
+      this.toastr.error('Incorrect username or password.', 'Authentication failed.');
+      this.submitted = false;
     }
 
     /*this.service.login(this.loginForm.value).subscribe(
