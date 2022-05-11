@@ -25,6 +25,11 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/home');
   }
 
+  goToRegister(){  
+    console.log('Registering')
+    this.router.navigateByUrl('/register');
+  }
+
   loginUser() {
     //console.log(this.loginForm)
 
@@ -35,7 +40,6 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
     }else{
       this.router.navigateByUrl('/login');
-      this.router.navigateByUrl('/register');
       this.toastr.error('Incorrect username or password.', 'Authentication failed.');
       this.submitted = false;
     }
