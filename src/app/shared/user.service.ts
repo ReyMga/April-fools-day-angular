@@ -24,4 +24,8 @@ export class UserService {
   login(formData : any) {
     return formData.name==='Raquel' && formData.password==='123';
   }
+
+  register(formData : any) {
+    console.log(formData);
+  }
 }
