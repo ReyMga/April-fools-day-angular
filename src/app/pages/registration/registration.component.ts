@@ -1,51 +1,54 @@
-import { UserService } from '../../shared/user.service';
-import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, FormControlName } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styles: []
+  styleUrls: ['./registration.component.scss'],
 })
+
 export class RegistrationComponent implements OnInit {
+  submitted: boolean = false;
 
-  constructor(public service: UserService, private toastr: ToastrService) { }
+  userName: string = '';
+  fullName: string = '';
+  password: string = '';
+  confirmPassword: string = '';
 
+  
   registerForm = new FormGroup({
-    name: new FormControl(''),
+    userName: new FormControl(''),
+    fullName: new FormControl(''),
     password: new FormControl(''),
+    confirmPassword: new FormControl(''),
   })
+
+  constructor(public service: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.registerForm.reset();
   }
 
-  /*
-  onSubmit() {
-    this.service.register().subscribe(
-      (res: any) => {
-        if (res.succeeded) {
-          this.service.formModel.reset();
-          this.toastr.success('New user created!', 'Registration successful.');
-        } else {
-          res.errors.forEach(element => {
-            switch (element.code) {
-              case 'DuplicateUserName':
-                this.toastr.error('Username is already taken','Registration failed.');
-                break;
-
-              default:
-              this.toastr.error(element.description,'Registration failed.');
-                break;
-            }
-          });
-        }
-      },
-      err => {
-        console.log(err);
-      }
-    );
+  validateForm(){
+    const formValue = this.registerForm.value;
+    return formValue.userName.length > 0 && 
+    formValue.fullName.length > 0 && 
+    formValue.password.length > 0 && 
+    formValue.confirmPassword.length > 0 &&   
+    formValue.confirmPassword === formValue.password
   }
-*/
+
+  onSubmit() {
+    debugger;
+    this.submitted = true;
+    if(!this.validateForm())
+      return;
+    this.service.register(this.registerForm)
+    
+    this.toastr.success('User created successfully', 'Successfull Registration .');  
+    this.router.navigateByUrl('/login');
+  }
 }
