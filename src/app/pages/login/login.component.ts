@@ -10,11 +10,11 @@ import { UserService } from '../../shared/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  name: string = '';
+  userName: string = '';
   submitted = false;
 
   loginForm = new FormGroup({
-    name: new FormControl(''),
+    userName: new FormControl(''),
     password: new FormControl(''),
   })
 
@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
     //console.log(this.loginForm)
 
 
-    if(this.service.login(this.loginForm.value)){
+    if(this.service.login(this.loginForm)){
         localStorage.setItem('token', '123');
         this.submitted = true;
         this.router.navigateByUrl('/home');
     }else{
       this.router.navigateByUrl('/login');
-      this.toastr.error('Incorrect username or password.', 'Authentication failed.');
+      this.toastr.error('Incorrect userName or password.', 'Authentication failed.');
       this.submitted = false;
     }
 

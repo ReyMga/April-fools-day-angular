@@ -18,6 +18,7 @@ export class DataLayerService {
   }
 
   registerUser(user: UserModel) {
+    debugger
     //1. Read from LS into local var
     const users = this.readUsers();
     //2. Add item to var local
@@ -29,12 +30,23 @@ export class DataLayerService {
   readUsers() {
     return <UserModel[]>JSON.parse(this.readLocalStorage('users') || '[]');
   }
-
-  login(user: UserModel) {
-    const users = this.readUsers();
-    return !!users.find((x) => x.username === user.username && x.password=== user.password);
+  
+  readCurrentUser() {
+    return <UserModel>JSON.parse(this.readLocalStorage('currentUser') || '[]');
   }
 
-  //ExisteUsuario()
+  login(user: UserModel) {
+    if(this.existUserInUsers(user)){
+      //Guardo en localStorage el usuario actual
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      return true;
+    }
+    return false;
+  }
+
+  existUserInUsers(user: UserModel){
+    const users = this.readUsers();
+    return !!users.find((x) => x.userName === user.userName && x.password=== user.password);
+  }
   
 }
