@@ -1,7 +1,7 @@
 <div class="container-registration">
  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
     <div class="form-group required">
-      <label>Username</label>
+      <label>User Name</label>
       <input class="form-control" formControlName="userName" id="userName" name="userName">
       <label class="text-danger" *ngIf="userName.length === 0  && submitted">This
         field is mandatory.</label>
