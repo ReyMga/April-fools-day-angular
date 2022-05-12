@@ -1,30 +1,37 @@
 import { Injectable } from '@angular/core';
 import { ColorsModel } from 'src/app/Model/colors.model';
 import { UserModel } from 'src/app/Model/userModel';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataLayerService {
-  constructor() {}
+
+  constructor( private toastr: ToastrService) { }
 
   //Local storage
   readLocalStorage(item: string = '') {
     return localStorage.getItem(item);
   }
-  //escribir localStorage
+  //write localStorage
   writeLocalStorage(item: string, object: ColorsModel) {
     localStorage.setItem(item, JSON.stringify(object));
   }
 
   registerUser(user: UserModel) {
-    debugger
     //1. Read from LS into local var
     const users = this.readUsers();
+    //Validation userName
+    if(!!users.find((x) => x.userName === user.userName)){
+      this.toastr.error('UserName already exists.', 'Registration failed.');
+      return false; 
+    }
     //2. Add item to var local
     users.push(user);
     //3. Write to LS
     localStorage.setItem('users', JSON.stringify(users));
+    return true;
   }
 
   readUsers() {
@@ -37,7 +44,7 @@ export class DataLayerService {
 
   login(user: UserModel) {
     if(this.existUserInUsers(user)){
-      //Guardo en localStorage el usuario actual
+      //Save in localStorage current user
       localStorage.setItem('currentUser', JSON.stringify(user));
       return true;
     }

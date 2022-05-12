@@ -28,6 +28,6 @@ export class UserService {
   }
 
   register(formData: any) {
-    this.dataLayerService.registerUser(<UserModel>formData.value);
+    return this.dataLayerService.registerUser(<UserModel>formData.value);
   }
 }
