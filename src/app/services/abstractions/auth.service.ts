@@ -23,4 +23,12 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
   }
+
+  readUsers() {
+    return this.dataLayerService.readUsers();
+  }
+
+  readCurrentUser() {
+    return this.dataLayerService.readCurrentUser();
+  }
 }

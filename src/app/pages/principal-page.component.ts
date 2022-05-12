@@ -4,6 +4,7 @@ import { AuthService } from '../services/abstractions/auth.service';
 import {GraficoModel} from "../Model/grafico.model";
 import {ColorsModel} from "../Model/colors.model";
 import Utils from '../utils'
+import { UserModel } from 'src/app/Model/userModel';
 
 @Component({
   selector: 'app-principal-page',
@@ -14,7 +15,8 @@ export class PrincipalPageComponent implements OnInit {
   title = 'april-fools-angular';
   myColors: ColorsModel;
   colors: Array<GraficoModel> = [];
-  
+  currentUserName = '';
+
   constructor(private authService: AuthService) { 
     this.myColors = new ColorsModel()
   }
@@ -26,6 +28,9 @@ export class PrincipalPageComponent implements OnInit {
     }else{
       this.renderChart();
     }
+   const currentUser: UserModel = this.authService.readCurrentUser();
+   console.log(currentUser);
+   this.currentUserName = currentUser.userName;
   }
 
   logout():void {

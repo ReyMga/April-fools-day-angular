@@ -1,5 +1,5 @@
 export class UserModel {
-  username: string = '';
+  userName: string = '';
   fullName: string = '';
   password: string = '';
   confirmPassword: string = '';

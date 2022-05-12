@@ -1,8 +1,9 @@
-import { FormGroup, FormControl, FormControlName } from "@angular/forms";
+import { FormGroup, FormControl, FormControlName, Validators } from "@angular/forms";
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../shared/user.service';
+
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,6 @@ import { UserService } from '../../shared/user.service';
 
 export class RegistrationComponent implements OnInit {
   submitted: boolean = false;
-
   userName: string = '';
   fullName: string = '';
   password: string = '';

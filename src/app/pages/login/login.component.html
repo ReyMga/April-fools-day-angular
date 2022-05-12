@@ -3,9 +3,9 @@
     <h1 class="login">Login Form</h1>
     <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" name="name" formControlName="name" required>
-          <label for="name" class="password-style">Password</label>
+          <label for="userName">Name</label>
+          <input type="text" class="form-control" id="userName" name="userName" formControlName="userName" required>
+          <label for="password" class="password-style">Password</label>
           <input type="password" class="form-control" id="password" name="password" formControlName="password" required>
         </div>
         <div class="botton-container">
